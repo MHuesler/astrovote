@@ -1,25 +1,17 @@
-<nav class="top-nav">
-  <div class="small-nav-content">
-    <a (click)="toggleSideNav(true)"
-        (tuiActiveZoneChange)="toggleSideNav($event)">
-      <i-feather name="menu"></i-feather>
-      <div *tuiSidebar="open; direction: 'left'">
-        <app-side-nav-content></app-side-nav-content>
-      </div>
-    </a>
-    <a class="logo">therapyapp<sup>alpha</sup></a>
-  </div>
-
+<nav class="container-fluid">
+  <a class="logo">therapyapp<sup>alpha</sup></a>
   <tui-hosted-dropdown [content]="content">
-    <tui-avatar [text]="(authService.currentUser$ | async).fullName" size="m"></tui-avatar>
+    <tui-avatar text="Test" size="m"></tui-avatar>
   </tui-hosted-dropdown>
   <ng-template #content>
-      <a class="menu-item" (click)="onSignOut()">
+      <!-- <a class="menu-item" (click)="onSignOut()"> -->
         <div class="icon">
-          <tui-svg src="tuiIconLogoutLarge"></tui-svg>
+          <!-- <tui-svg src="tuiIconLogoutLarge"></tui-svg> -->
         </div>
-        <div>{{ 'SIGN_OUT' | translate }}</div>
-      </a>
+        <div>{{ 'SIGN_OUT' }}</div>
+      <!-- </a> -->
   </ng-template>
 </nav>
-<router-outlet></router-outlet>
+<main>
+  <router-outlet></router-outlet>
+</main>
