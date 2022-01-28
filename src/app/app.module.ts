@@ -16,10 +16,10 @@ import { MainLayoutComponent } from './layouts/main-layout/main-layout.component
   imports: [
     BrowserModule,
     AppRoutingModule,
-      TuiRootModule,
-      BrowserAnimationsModule,
-      TuiDialogModule,
-      TuiNotificationsModule
+    TuiRootModule,
+    BrowserAnimationsModule,
+    TuiDialogModule,
+    TuiNotificationsModule
 ],
   providers: [{provide: TUI_SANITIZER, useClass: NgDompurifySanitizer}],
   bootstrap: [AppComponent]
