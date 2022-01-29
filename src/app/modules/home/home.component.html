@@ -1,8 +1,39 @@
-<div class="feed-width">
+<div class="feed-width pt-2">
   <tui-primitive-textfield
-        iconAlign="left"
-        tuiTextfieldSize="m"
-        [tuiTextfieldLabelOutside]="true"
-      >Create Post</tui-primitive-textfield>
-  <app-post></app-post>
+    class="mb-3"
+    iconContent="tuiIconPlusLarge"
+    iconAlign="left"
+    tuiTextfieldSize="l"
+    [tuiTextfieldLabelOutside]="true"
+  >Create Post</tui-primitive-textfield>
+  <tui-island class="mb-3">
+    <div class="container-fluid">
+      <div class="row justify-content-between">
+        <div class="col-auto d-flex align-items-center">
+          <div class="row">
+            <div class="col-auto">
+              <tui-tag class="tag" [hoverable]="true" value="Top"></tui-tag>
+            </div>
+            <div class="col-auto">
+              <tui-tag class="tag" [hoverable]="true" value="New"></tui-tag>
+            </div>
+          </div>
+        </div>
+        <div class="col-auto">
+          <button
+            tuiIconButton
+            size="s"
+            type="button"
+            appearance="icon"
+            icon="tuiIconFilter"
+          ></button>
+        </div>
+      </div>
+    </div>
+  </tui-island>
+  <section>
+    <div class="mb-2" *ngFor="let post of posts">
+      <app-post [post]="post"></app-post>
+    </div>
+  </section>
 </div>

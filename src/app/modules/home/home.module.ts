@@ -3,7 +3,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home.component';
 import { RouterModule, Routes } from '@angular/router';
-import { TuiPrimitiveTextfieldModule, TuiTextfieldControllerModule } from '@taiga-ui/core';
+import { TuiButtonModule, TuiPrimitiveTextfieldModule, TuiTextfieldControllerModule } from '@taiga-ui/core';
+import { TuiIslandModule } from '@taiga-ui/kit';
+import {TuiTagModule} from '@taiga-ui/kit';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -17,7 +19,10 @@ export const routes: Routes = [
     CommonModule,
     TuiTextfieldControllerModule,
     TuiPrimitiveTextfieldModule,
-    PostModule
+    PostModule,
+    TuiIslandModule,
+    TuiTagModule,
+    TuiButtonModule
   ]
 })
 export class HomeModule { }

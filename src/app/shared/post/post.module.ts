@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { PostComponent } from './post.component';
 import { TuiRatingModule, TuiAvatarModule } from '@taiga-ui/kit';
 import { ReactiveFormsModule } from '@angular/forms';
+import {TuiIslandModule} from '@taiga-ui/kit';
+import {TuiBadgeModule} from '@taiga-ui/kit';
 
 @NgModule({
   declarations: [PostComponent],
@@ -10,7 +12,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     TuiRatingModule,
     ReactiveFormsModule,
-    TuiAvatarModule
+    TuiAvatarModule,
+    TuiIslandModule,
+    TuiBadgeModule
   ],
   exports: [PostComponent]
 })
