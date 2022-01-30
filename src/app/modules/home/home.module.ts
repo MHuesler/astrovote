@@ -6,6 +6,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { TuiButtonModule, TuiPrimitiveTextfieldModule, TuiTextfieldControllerModule } from '@taiga-ui/core';
 import { TuiIslandModule } from '@taiga-ui/kit';
 import {TuiTagModule} from '@taiga-ui/kit';
+import { EditPostComponent } from './edit-post/edit-post.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {TuiInputModule} from '@taiga-ui/kit';
+import {TuiAutoFocusModule} from '@taiga-ui/cdk';
+import {TuiComboBoxModule, TuiDataListWrapperModule} from '@taiga-ui/kit';
+import {TuiDataListModule} from '@taiga-ui/core';
+import {TuiTextAreaModule} from '@taiga-ui/kit';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -13,7 +20,7 @@ export const routes: Routes = [
 
 
 @NgModule({
-  declarations: [HomeComponent],
+  declarations: [HomeComponent, EditPostComponent],
   imports: [
     RouterModule.forChild(routes),
     CommonModule,
@@ -22,7 +29,15 @@ export const routes: Routes = [
     PostModule,
     TuiIslandModule,
     TuiTagModule,
-    TuiButtonModule
+    TuiButtonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    TuiInputModule,
+    TuiAutoFocusModule,
+    TuiComboBoxModule,
+    TuiDataListWrapperModule,
+    TuiDataListModule,
+    TuiTextAreaModule
   ]
 })
 export class HomeModule { }

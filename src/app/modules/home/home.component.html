@@ -1,10 +1,12 @@
 <div class="feed-width pt-2">
   <tui-primitive-textfield
+    #createPostInput
     class="mb-3"
     iconContent="tuiIconPlusLarge"
     iconAlign="left"
     tuiTextfieldSize="l"
     [tuiTextfieldLabelOutside]="true"
+    (click)="openPostCreationDialog()"
   >Create Post</tui-primitive-textfield>
   <tui-island class="mb-3">
     <div class="container-fluid">

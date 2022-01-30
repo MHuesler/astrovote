@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  alphavantageApiKey: 'FTFFH8EQUCBVX0UM'
 };

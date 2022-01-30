@@ -3,6 +3,8 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { TuiRootModule, TuiDialogModule, TuiNotificationsModule, TUI_SANITIZER } from "@taiga-ui/core";
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,7 +17,8 @@ import { AppComponent } from './app.component';
     TuiRootModule,
     BrowserAnimationsModule,
     TuiDialogModule,
-    TuiNotificationsModule
+    TuiNotificationsModule,
+    HttpClientModule
 ],
   providers: [{provide: TUI_SANITIZER, useClass: NgDompurifySanitizer}],
   bootstrap: [AppComponent]
