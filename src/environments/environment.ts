@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  alphavantageApiKey: 'FTFFH8EQUCBVX0UM'
+  alphavantageApiKey: 'FTFFH8EQUCBVX0UM',
+  apiBaseUrl: 'https://api.astrovote.local/api/v1'
 };
 
 /*

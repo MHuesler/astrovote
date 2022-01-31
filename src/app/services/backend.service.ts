@@ -1,5 +1,5 @@
 import { environment } from './../../environments/environment';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
@@ -9,12 +9,16 @@ import { map } from 'rxjs/operators';
 })
 export class BackendService {
 
-  baseUrl = 'https://localhost:4100'
+  posts: Subject<any> = new Subject<any>()
 
   constructor(private http: HttpClient) {}
 
-  createPost(post: {ticker: string, analysis: string}): Observable<null> {
-    return this.http.post<null>(`${this.baseUrl}/post`, post)
+  createPost(post: { ticker: string, analysis: string }): Observable<null> {
+    return this.http.post<null>(`${environment.apiBaseUrl}/posts`, post)
+  }
+
+  getPosts(): void {
+    this.http.get(`${environment.apiBaseUrl}/posts`).subscribe(res => this.posts.next(res))
   }
 
   searchSymbol(keywords: string): Observable<any[]> {

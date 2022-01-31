@@ -1,3 +1,4 @@
+import { BackendService } from './../../services/backend.service';
 import { EditPostComponent } from './edit-post/edit-post.component';
 import { Component, ElementRef, Inject, Injector, OnInit, ViewChild } from '@angular/core';
 import { TuiDialogService } from '@taiga-ui/core';
@@ -93,9 +94,11 @@ export class HomeComponent implements OnInit {
   constructor(
     @Inject(TuiDialogService) private readonly dialogService: TuiDialogService,
     @Inject(Injector) private readonly injector: Injector,
+    public backend: BackendService
   ) { }
 
   ngOnInit(): void {
+    this.backend.getPosts()
   }
 
   openPostCreationDialog(): void {

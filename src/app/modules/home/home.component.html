@@ -34,7 +34,7 @@
     </div>
   </tui-island>
   <section>
-    <div class="mb-2" *ngFor="let post of posts">
+    <div class="mb-2" *ngFor="let post of backend.posts | async">
       <app-post [post]="post"></app-post>
     </div>
   </section>

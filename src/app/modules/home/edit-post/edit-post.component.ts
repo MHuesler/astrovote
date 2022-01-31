@@ -47,7 +47,10 @@ export class EditPostComponent implements OnInit {
       )
     )
 
-  constructor(private fb: FormBuilder, private backend: BackendService) {}
+  constructor(
+    private fb: FormBuilder,
+    private backend: BackendService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -57,6 +60,6 @@ export class EditPostComponent implements OnInit {
   }
 
   onSubmit(): void {
-
+    this.backend.createPost({ ...this.postForm.value, ticker: this.postForm.controls.ticker.value.symbol }).subscribe()
   }
 }
