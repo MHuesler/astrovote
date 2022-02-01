@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { BackendService } from './../../../services/backend.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
@@ -10,6 +11,7 @@ import {
   debounceTime,
   map,
 } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 class Equity {
   constructor(readonly symbol: string, readonly name: string) {}
@@ -38,7 +40,7 @@ export class EditPostComponent implements OnInit {
       filter((value) => value !== null),
       switchMap((search) =>
         (
-          this.backend.searchSymbol(search).pipe(map((matches) =>
+          this.searchSymbol(search).pipe(map((matches) =>
             matches.map((match) => {
               return new Equity(match.symbol, match.name)
             })
@@ -49,7 +51,8 @@ export class EditPostComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private backend: BackendService
+    private backend: BackendService,
+    private http: HttpClient
   ) {}
 
   ngOnInit(): void {}
@@ -61,5 +64,20 @@ export class EditPostComponent implements OnInit {
 
   onSubmit(): void {
     this.backend.createPost({ ...this.postForm.value, ticker: this.postForm.controls.ticker.value.symbol }).subscribe()
+  }
+
+  searchSymbol(keywords: string): Observable<any[]> {
+    return this.http
+      .get<any[]>(
+        `https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${keywords}&apikey=${environment.alphavantageApiKey}`
+      )
+      .pipe(map((res: any) => res.bestMatches))
+      .pipe(
+        map((matches) =>
+          matches.map((match: any) => {
+            return { symbol: match['1. symbol'], name: match['2. name'] }
+          })
+        )
+      )
   }
 }

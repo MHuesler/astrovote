@@ -1,0 +1,18 @@
+
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 46px;
+  margin-bottom: 20px;
+  a {
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 16px;
+    color: black;
+  }
+}
+.auth-wrapper {
+  max-width: 475px;
+  padding-top: 25px;
+}

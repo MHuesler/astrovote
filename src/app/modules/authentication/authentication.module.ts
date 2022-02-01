@@ -1,15 +1,32 @@
+import { TuiFieldErrorModule, TuiInputModule, TuiInputPasswordModule } from '@taiga-ui/kit';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AuthenticationComponent } from './authentication.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { AuthLayoutComponent } from 'src/app/layouts/auth-layout/auth-layout.component';
+import { RouterModule, Routes } from '@angular/router';
+import { MatPasswordStrengthModule } from '@angular-material-extensions/password-strength';
 
-
+export const routes: Routes = [
+  {
+    path: '',
+    component: AuthLayoutComponent,
+    children: [
+      { path: '', redirectTo: 'signin' },
+      { path: 'signin', pathMatch: 'full', component: SignInComponent },
+      { path: 'signup', pathMatch: 'full', component: SignUpComponent },
+    ],
+  },
+]
 
 @NgModule({
-  declarations: [AuthenticationComponent, SignInComponent, SignUpComponent],
+  declarations: [AuthLayoutComponent, SignInComponent, SignUpComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule.forChild(routes),
+    TuiInputModule,
+    TuiFieldErrorModule,
+    TuiInputPasswordModule
   ]
 })
 export class AuthenticationModule { }

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthenticationService } from '../authentication.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -6,10 +9,28 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sign-up.component.scss']
 })
 export class SignUpComponent implements OnInit {
+  accountDetailsForm = this.fb.group({
+    fullname: ['', [Validators.required]],
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required]],
+  })
 
-  constructor() { }
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthenticationService,
+    private router: Router
+  ) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  onSubmit(): void {
+    this.authService
+      .signUp(this.accountDetailsForm.value)
+      .subscribe(() =>
+        this.authService
+        .signIn(this.accountDetailsForm.value)
+        .subscribe((userInfo: { userId: string }) => {
+          localStorage.setItem('userId', userInfo.userId)
+        }))
   }
-
 }

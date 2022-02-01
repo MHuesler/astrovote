@@ -1,1 +1,42 @@
-<p>sign-up works!</p>
+<form [formGroup]="accountDetailsForm" (ngSubmit)="onSubmit()">
+  <h1>Welcome! Lets setup your account.</h1>
+  <div class="tui-form__row">
+    <tui-input formControlName="fullname">
+      {{ "ACCOUNT.FULL_NAME" | translate }}
+      <span class="tui-required"></span>
+    </tui-input>
+    <tui-field-error></tui-field-error>
+  </div>
+  <div class="tui-form__row">
+    <tui-input formControlName="email">
+      {{ "ACCOUNT.EMAIL" | translate }}
+      <span class="tui-required"></span>
+    </tui-input>
+    <tui-field-error></tui-field-error>
+  </div>
+  <div class="tui-form__row">
+    <div class="password">
+      <tui-input-password formControlName="password" #password>
+        {{ "ACCOUNT.PASSWORD" | translate }}
+        <span class="tui-required"></span>
+      </tui-input-password>
+      <tui-field-error></tui-field-error>
+    </div>
+    <mat-password-strength
+      #passwordComponent
+      [password]="password.value"
+    >
+    </mat-password-strength>
+    <mat-password-strength-info
+    [hidden]="!accountDetailsForm.controls.password.dirty"
+    [passwordComponent]="passwordComponent"
+    >
+    </mat-password-strength-info>
+  </div>
+  <button class="tui-form__row" tuiButton [disabled]="accountDetailsForm.invalid || passwordComponent.strength !== 100" type="submit" appearance="primary">
+    Create Account
+  </button>
+  <div class="redirects row justify-content-between">
+    <a routerLink="/auth/signin" class="col-6">{{ 'AUTH.ACCOUNT_EXISTING' | translate }}</a>
+  </div>
+</form>

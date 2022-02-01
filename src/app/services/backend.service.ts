@@ -9,30 +9,29 @@ import { map } from 'rxjs/operators';
 })
 export class BackendService {
 
+
+  baseUrl = environment.apiBaseUrl
   posts: Subject<any> = new Subject<any>()
 
   constructor(private http: HttpClient) {}
 
   createPost(post: { ticker: string, analysis: string }): Observable<null> {
-    return this.http.post<null>(`${environment.apiBaseUrl}/posts`, post)
+    return this.http.post<null>(`${this.baseUrl}/posts`, post)
   }
 
   getPosts(): void {
-    this.http.get(`${environment.apiBaseUrl}/posts`).subscribe(res => this.posts.next(res))
+    this.http.get(`${this.baseUrl}/posts`).subscribe(res => this.posts.next(res))
   }
 
-  searchSymbol(keywords: string): Observable<any[]> {
-    return this.http
-      .get<any[]>(
-        `https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${keywords}&apikey=${environment.alphavantageApiKey}`
-      )
-      .pipe(map((res: any) => res.bestMatches))
-      .pipe(
-        map((matches) =>
-          matches.map((match: any) => {
-            return { symbol: match['1. symbol'], name: match['2. name'] }
-          })
-        )
-      )
+  createVote(postFK: string, rating: number): Observable<null> {
+    return this.http.post<null>(`${this.baseUrl}/votes`, { postFK, rating })
+  }
+
+  updateVote(postFK: string, rating: number): Observable<null> {
+    return this.http.put<null>(`${this.baseUrl}/votes/${ postFK }`, { rating })
+  }
+
+  getUser(id: string | null): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/users/${id}`, { withCredentials: true })
   }
 }

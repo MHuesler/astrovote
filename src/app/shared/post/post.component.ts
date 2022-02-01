@@ -1,3 +1,4 @@
+import { BackendService } from './../../services/backend.service';
 import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
@@ -11,13 +12,26 @@ declare const TradingView: any;
 export class PostComponent implements OnInit, AfterViewInit {
 
   rateControl = new FormControl(0);
-
+  userVote: any;
   @Input() post: any;
 
-  constructor() { }
+  constructor(
+    private backend: BackendService
+  ) { }
 
   ngOnInit(): void {
-    this.rateControl.setValue(this.post.rating)
+    this.rateControl.setValue(0)
+
+    this.rateControl.valueChanges
+      .subscribe((rating) => {
+        (!this.userVote ?
+          this.backend.createVote(this.post.id, rating)
+          : this.backend.updateVote(this.post.id, rating)
+        ).subscribe(() => {
+          this.post.rating += rating - 3;
+          this.userVote.rating = rating;
+        })
+      });
   }
 
   ngAfterViewInit(): void {
