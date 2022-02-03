@@ -1,0 +1,12 @@
+{
+  "SIGN_OUT": "Sign Out",
+  "SEARCH": "Search",
+  "AUTH": {
+    "TITLE_EXISTING": "Welcome back",
+    "CREATE_ACCOUNT": "Create account",
+    "SIGNIN": "Sign in to your account",
+    "ACCOUNT_EXISTING": "Have an account?",
+    "ACCOUNT_INEXISTENT": "Don't have an account?",
+    "FORGOT_PASSWORD": "Forgot password?"
+  }
+}

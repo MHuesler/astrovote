@@ -5,6 +5,8 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { AuthLayoutComponent } from 'src/app/layouts/auth-layout/auth-layout.component';
 import { RouterModule, Routes } from '@angular/router';
+import { TranslationsModule } from 'src/app/shared/translations.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatPasswordStrengthModule } from '@angular-material-extensions/password-strength';
 
 export const routes: Routes = [
@@ -26,7 +28,11 @@ export const routes: Routes = [
     RouterModule.forChild(routes),
     TuiInputModule,
     TuiFieldErrorModule,
-    TuiInputPasswordModule
+    TuiInputPasswordModule,
+    TranslationsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatPasswordStrengthModule
   ]
 })
 export class AuthenticationModule { }
