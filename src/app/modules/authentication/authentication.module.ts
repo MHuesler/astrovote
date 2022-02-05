@@ -1,3 +1,4 @@
+import { TuiButtonModule } from '@taiga-ui/core';
 import { TuiFieldErrorModule, TuiInputModule, TuiInputPasswordModule } from '@taiga-ui/kit';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -32,7 +33,8 @@ export const routes: Routes = [
     TranslationsModule,
     FormsModule,
     ReactiveFormsModule,
-    MatPasswordStrengthModule
+    MatPasswordStrengthModule,
+    TuiButtonModule
   ]
 })
 export class AuthenticationModule { }

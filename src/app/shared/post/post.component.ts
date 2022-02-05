@@ -20,7 +20,8 @@ export class PostComponent implements OnInit, AfterViewInit {
   ) { }
 
   ngOnInit(): void {
-    this.rateControl.setValue(0)
+    console.log(this.post)
+    this.rateControl.setValue(this.post.userRating)
 
     this.rateControl.valueChanges
       .subscribe((rating) => {

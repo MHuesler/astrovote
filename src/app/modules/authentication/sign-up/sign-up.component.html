@@ -1,8 +1,15 @@
 <form [formGroup]="accountDetailsForm" (ngSubmit)="onSubmit()">
   <h1>Welcome! Lets setup your account.</h1>
   <div class="tui-form__row">
-    <tui-input formControlName="fullname">
-      {{ "ACCOUNT.FULL_NAME" | translate }}
+    <tui-input formControlName="userName">
+      {{ "ACCOUNT.USER_NAME" | translate }}
+      <span class="tui-required"></span>
+    </tui-input>
+    <tui-field-error></tui-field-error>
+  </div>
+  <div class="tui-form__row">
+    <tui-input formControlName="displayName">
+      {{ "ACCOUNT.DISPLAY_NAME" | translate }}
       <span class="tui-required"></span>
     </tui-input>
     <tui-field-error></tui-field-error>

@@ -1,3 +1,4 @@
+import { environment } from './../../../environments/environment';
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { Observable } from 'rxjs'
@@ -6,9 +7,11 @@ import { Observable } from 'rxjs'
 export class AddCsrfHeaderInterceptorService implements HttpInterceptor {
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         const requestToken = this.getCookieValue('XSRF-TOKEN')
-        return next.handle(req.clone({
-            headers: req.headers.set('X-XSRF-TOKEN', requestToken.trim())
-        }))
+        const isApiUrl = req.url.includes(environment.apiBaseUrl);
+        return next.handle(req.clone(isApiUrl ? {
+            headers: req.headers.set('X-XSRF-TOKEN', requestToken.trim()),
+            withCredentials: true
+        } : {}))
     }
 
     private getCookieValue(cookieName: string): string {

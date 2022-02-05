@@ -19,9 +19,9 @@ export class AuthenticationService {
     private backend: BackendService
   ) { }
 
-  signIn(model: {email: string, password: string}): Observable<any> {
+  signIn(model: {userName: string, password: string}): Observable<any> {
     return this.httpClient.post(`${this.baseUrl}/auth/signin`, model, { withCredentials: true })
-      .pipe(tap(() => this.getAntiforgery()))
+      .pipe(tap(() => this.getAntiforgery().subscribe()))
   }
 
   signUp(model: {fullName: string, email: string, password: string}): Observable<{}> {
@@ -34,14 +34,6 @@ export class AuthenticationService {
         this.currentUser.next({ fullName: '' })
         localStorage.setItem('userId', '')
       }))
-  }
-
-  joinInvite(model: { inviteCode: string}): Observable<{}> {
-    return this.httpClient.post(`${this.baseUrl}/invite/join`, model, { withCredentials: true })
-  }
-
-  getSignUpStep(): Observable<{}> {
-    return this.httpClient.post(`${this.baseUrl}/auth/signin`, { withCredentials: true })
   }
 
   getAuthStatus(): boolean {

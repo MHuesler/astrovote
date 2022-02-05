@@ -10,7 +10,8 @@ import { AuthenticationService } from '../authentication.service';
 })
 export class SignUpComponent implements OnInit {
   accountDetailsForm = this.fb.group({
-    fullname: ['', [Validators.required]],
+    userName: ['', [Validators.required]],
+    displayName: ['', [Validators.required]],
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required]],
   })
