@@ -2,7 +2,7 @@ import { MainLayoutComponent } from './main-layout.component';
 import { MainLayoutRoutingModule } from './mail-layout.routing.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TuiDataListModule, TuiHostedDropdownModule, TuiPrimitiveTextfieldModule, TuiSvgModule, TuiTextfieldControllerModule } from '@taiga-ui/core';
+import { TuiButtonModule, TuiDataListModule, TuiHostedDropdownModule, TuiPrimitiveTextfieldModule, TuiSvgModule, TuiTextfieldControllerModule } from '@taiga-ui/core';
 import { TuiActiveZoneModule } from '@taiga-ui/cdk';
 import { TuiAvatarModule } from '@taiga-ui/kit';
 
@@ -17,7 +17,8 @@ import { TuiAvatarModule } from '@taiga-ui/kit';
     TuiActiveZoneModule,
     TuiAvatarModule,
     TuiPrimitiveTextfieldModule,
-    TuiTextfieldControllerModule
+    TuiTextfieldControllerModule,
+    TuiButtonModule
   ]
 })
 export class MainLayoutModule { }

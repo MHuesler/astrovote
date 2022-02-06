@@ -1,10 +1,10 @@
-import { SignInDialogComponent } from './../authentication/sign-in-dialog/sign-in-dialog.component';
 import { AuthenticationService } from './../authentication/authentication.service';
 import { BackendService } from './../../services/backend.service';
 import { EditPostComponent } from './edit-post/edit-post.component';
 import { Component, ElementRef, Inject, Injector, OnInit, ViewChild } from '@angular/core';
 import { TuiDialogService } from '@taiga-ui/core';
 import { PolymorpheusComponent } from '@tinkoff/ng-polymorpheus';
+import { SignInComponent } from '../authentication/sign-in/sign-in.component';
 
 @Component({
   selector: 'app-home',
@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit {
   )
 
   private readonly signInDialog = this.dialogService.open<number>(
-    new PolymorpheusComponent(SignInDialogComponent, this.injector),
+    new PolymorpheusComponent(SignInComponent, this.injector),
     {
       dismissible: true,
       label: 'Sign in to create posts',
@@ -57,10 +57,10 @@ export class HomeComponent implements OnInit {
 
     this.postDialog.subscribe({
       next: data => {
-        console.info('Dialog emitted data = ' + data)
+        this.backend.getPosts()
       },
       complete: () => {
-        console.info('Dialog closed')
+        this.backend.getPosts()
       },
     });
 

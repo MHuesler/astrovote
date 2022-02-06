@@ -8,7 +8,7 @@ import { AuthenticationService } from 'src/app/modules/authentication/authentica
 })
 export class MainLayoutComponent implements OnInit {
 
-  constructor(private authService: AuthenticationService) {
+  constructor(public authService: AuthenticationService) {
     this.authService.refreshUser()
   }
 

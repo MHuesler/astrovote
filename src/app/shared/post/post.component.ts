@@ -1,6 +1,10 @@
+import { AuthenticationService } from 'src/app/modules/authentication/authentication.service';
+import { PolymorpheusComponent } from '@tinkoff/ng-polymorpheus';
 import { BackendService } from './../../services/backend.service';
-import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Inject, Injector, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { SignInComponent } from 'src/app/modules/authentication/sign-in/sign-in.component';
+import { TuiDialogService } from '@taiga-ui/core';
 
 declare const TradingView: any;
 
@@ -14,8 +18,19 @@ export class PostComponent implements OnInit, AfterViewInit {
   rateControl = new FormControl(0);
   @Input() post: any;
 
+  private readonly signInDialog = this.dialogService.open<number>(
+    new PolymorpheusComponent(SignInComponent, this.injector),
+    {
+      dismissible: true,
+      label: 'Sign in to rate posts',
+    },
+  )
+
   constructor(
-    private backend: BackendService
+    @Inject(TuiDialogService) private readonly dialogService: TuiDialogService,
+    @Inject(Injector) private readonly injector: Injector,
+    private backend: BackendService,
+    private authService: AuthenticationService
   ) { }
 
   ngOnInit(): void {
@@ -23,6 +38,19 @@ export class PostComponent implements OnInit, AfterViewInit {
 
     this.rateControl.valueChanges
       .subscribe((rating) => {
+        if (!this.authService.getAuthStatus()) {
+          this.rateControl.setValue(0, { emitEvent: false })
+          this.signInDialog.subscribe({
+            next: data => {
+              console.info('Dialog emitted data = ' + data)
+            },
+            complete: () => {
+              console.info('Dialog closed')
+            },
+          });
+          return
+        }
+
         if (this.post.userRating == rating) {
           this.backend.deleteVote(this.post.id)
             .subscribe((res: any) => {

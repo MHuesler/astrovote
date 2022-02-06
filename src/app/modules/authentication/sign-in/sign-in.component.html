@@ -1,5 +1,4 @@
 <form [formGroup]="signInForm" (ngSubmit)="onSubmit()">
-  <h1>{{ 'AUTH.TITLE_EXISTING' | translate}}</h1>
   <div class="tui-form__row">
       <tui-input formControlName="userName">
           {{ "ACCOUNT.USERNAME" | translate }}<span class="tui-required"></span>

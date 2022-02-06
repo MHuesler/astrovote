@@ -9,7 +9,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { TranslationsModule } from 'src/app/shared/translations.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatPasswordStrengthModule } from '@angular-material-extensions/password-strength';
-import { SignInDialogComponent } from './sign-in-dialog/sign-in-dialog.component';
 
 export const routes: Routes = [
   {
@@ -24,7 +23,7 @@ export const routes: Routes = [
 ]
 
 @NgModule({
-  declarations: [AuthLayoutComponent, SignInComponent, SignUpComponent, SignInDialogComponent],
+  declarations: [AuthLayoutComponent, SignInComponent, SignUpComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),

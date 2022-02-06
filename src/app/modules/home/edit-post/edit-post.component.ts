@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { BackendService } from './../../../services/backend.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Observable, of, Subject } from 'rxjs';
 import {
@@ -12,6 +12,8 @@ import {
   map,
 } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { TuiDialogContext, TuiDialogService } from '@taiga-ui/core';
+import {POLYMORPHEUS_CONTEXT} from '@tinkoff/ng-polymorpheus';
 
 class Equity {
   constructor(readonly symbol: string, readonly name: string) {}
@@ -52,7 +54,9 @@ export class EditPostComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private backend: BackendService,
-    private http: HttpClient
+    private http: HttpClient,
+    @Inject(POLYMORPHEUS_CONTEXT)
+    private context: TuiDialogContext<number, number>
   ) {}
 
   ngOnInit(): void {}
@@ -63,7 +67,7 @@ export class EditPostComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.backend.createPost({ ...this.postForm.value, ticker: this.postForm.controls.ticker.value.symbol }).subscribe()
+    this.backend.createPost({ ...this.postForm.value, ticker: this.postForm.controls.ticker.value.symbol }).subscribe(() => this.context.completeWith(0))
   }
 
   searchSymbol(keywords: string): Observable<any[]> {
@@ -81,3 +85,4 @@ export class EditPostComponent implements OnInit {
       )
   }
 }
+

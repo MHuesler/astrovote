@@ -10,17 +10,27 @@
     tuiTextfieldSize="m"
     [tuiTextfieldLabelOutside]="true"
   >Search Astrovote</tui-primitive-textfield> -->
-  <tui-hosted-dropdown [content]="content">
-    <tui-avatar text="Test" size="m"></tui-avatar>
-  </tui-hosted-dropdown>
-  <ng-template #content>
-      <!-- <a class="menu-item" (click)="onSignOut()"> -->
-        <div class="icon">
-          <!-- <tui-svg src="tuiIconLogoutLarge"></tui-svg> -->
-        </div>
-        <div>{{ 'SIGN_OUT' }}</div>
-      <!-- </a> -->
-  </ng-template>
+  <div *ngIf="this.authService.currentUser.value != null">
+    <tui-hosted-dropdown [content]="content">
+      <tui-avatar text="Test" size="m"></tui-avatar>
+    </tui-hosted-dropdown>
+    <ng-template #content>
+        <!-- <a class="menu-item" (click)="onSignOut()"> -->
+          <div class="icon">
+            <!-- <tui-svg src="tuiIconLogoutLarge"></tui-svg> -->
+          </div>
+          <div>{{ 'SIGN_OUT' }}</div>
+        <!-- </a> -->
+    </ng-template>
+  </div>
+  <button
+    *ngIf="this.authService.currentUser.value == null"
+    tuiButton
+    type="submit"
+    appearance="primary"
+    routerLink="/auth/signin"
+  > Sign In</button>
+
 </nav>
 <main class="container-fluid d-flex justify-content-center">
   <router-outlet></router-outlet>
