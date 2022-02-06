@@ -8,5 +8,9 @@
     "ACCOUNT_EXISTING": "Have an account?",
     "ACCOUNT_INEXISTENT": "Don't have an account?",
     "FORGOT_PASSWORD": "Forgot password?"
+  },
+  "ACCOUNT": {
+    "USERNAME": "Username",
+    "PASSWORD": "Password"
   }
 }

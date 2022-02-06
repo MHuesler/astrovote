@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
 })
 export class AuthenticationService {
 
-  currentUser = new BehaviorSubject<any>({ fullName: '' })
+  currentUser = new BehaviorSubject<any>(null)
   currentUser$ = this.currentUser.asObservable()
   baseUrl = environment.apiBaseUrl
 
@@ -31,13 +31,13 @@ export class AuthenticationService {
   signOut(): Observable<{}> {
     return this.httpClient.post(`${this.baseUrl}/auth/signout`, {}, { withCredentials: true })
       .pipe(tap(() => {
-        this.currentUser.next({ fullName: '' })
+        this.currentUser.next(null)
         localStorage.setItem('userId', '')
       }))
   }
 
   getAuthStatus(): boolean {
-    return localStorage.getItem('userId') ? true : false
+    return this.currentUser.value != null
   }
 
   getAntiforgery(): Observable<{}> {

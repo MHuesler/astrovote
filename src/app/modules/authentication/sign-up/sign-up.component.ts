@@ -32,6 +32,7 @@ export class SignUpComponent implements OnInit {
         .signIn(this.accountDetailsForm.value)
         .subscribe((userInfo: { userId: string }) => {
           localStorage.setItem('userId', userInfo.userId)
+          this.authService.currentUser.next(userInfo)
         }))
   }
 }
