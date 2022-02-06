@@ -31,7 +31,11 @@ export class BackendService {
     return this.http.put<null>(`${this.baseUrl}/votes/${ postFK }`, { rating })
   }
 
+  deleteVote(postFK: string): Observable<null> {
+    return this.http.delete<null>(`${this.baseUrl}/votes/${ postFK }`)
+  }
+
   getUser(id: string | null): Observable<any> {
-    return this.http.get<any>(`${this.baseUrl}/users/${id}`, { withCredentials: true })
+    return this.http.get<any>(`${this.baseUrl}/users/${id}`)
   }
 }

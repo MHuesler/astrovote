@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from 'src/app/modules/authentication/authentication.service';
 
 @Component({
   selector: 'app-main-layout',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainLayoutComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authService: AuthenticationService) {
+    this.authService.refreshUser()
+  }
 
   ngOnInit(): void {
   }

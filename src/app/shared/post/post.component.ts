@@ -12,7 +12,6 @@ declare const TradingView: any;
 export class PostComponent implements OnInit, AfterViewInit {
 
   rateControl = new FormControl(0);
-  userVote: any;
   @Input() post: any;
 
   constructor(
@@ -20,18 +19,25 @@ export class PostComponent implements OnInit, AfterViewInit {
   ) { }
 
   ngOnInit(): void {
-    console.log(this.post)
     this.rateControl.setValue(this.post.userRating)
 
     this.rateControl.valueChanges
       .subscribe((rating) => {
-        (!this.userVote ?
-          this.backend.createVote(this.post.id, rating)
-          : this.backend.updateVote(this.post.id, rating)
-        ).subscribe(() => {
-          this.post.rating += rating - 3;
-          this.userVote.rating = rating;
-        })
+        if (this.post.userRating == rating) {
+          this.backend.deleteVote(this.post.id)
+            .subscribe((res: any) => {
+              this.post.rating = res.rating;
+              this.post.userRating = 0;
+            })
+        } else {
+          (this.post.userRating == 0
+            ? this.backend.createVote(this.post.id, rating)
+            : this.backend.updateVote(this.post.id, rating)
+          ).subscribe((res: any) => {
+            this.post.rating = res.rating;
+            this.post.userRating = rating;
+          });
+        }
       });
   }
 

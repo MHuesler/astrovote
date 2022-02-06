@@ -16,9 +16,8 @@ export class HomeComponent implements OnInit {
   private readonly dialog = this.dialogService.open<number>(
     new PolymorpheusComponent(EditPostComponent, this.injector),
     {
-      dismissible: false,
+      dismissible: true,
       label: 'Create Post',
-      size: 'fullscreen'
     },
   )
 
