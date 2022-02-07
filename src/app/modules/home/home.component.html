@@ -1,3 +1,4 @@
+
 <div class="feed-width pt-2">
   <tui-primitive-textfield
     #createPostInput
@@ -14,14 +15,32 @@
         <div class="col-auto d-flex align-items-center">
           <div class="row">
             <div class="col-auto">
-              <tui-tag class="tag" [hoverable]="true" value="Top"></tui-tag>
+              <button
+                  tuiButton
+                  type="button"
+                  size="s"
+                  iconRight="tuiIconStarFilled"
+                  appearance="secondary"
+                  (click)="filter.setValue('top')"
+              >
+                Top
+              </button>
             </div>
             <div class="col-auto">
-              <tui-tag class="tag" [hoverable]="true" value="New"></tui-tag>
+              <button
+              tuiButton
+              type="button"
+              size="s"
+              iconRight="tuiIconTime"
+              appearance="secondary"
+              (click)="filter.setValue('new')"
+              >
+                New
+              </button>
             </div>
           </div>
         </div>
-        <div class="col-auto">
+        <!-- <div class="col-auto">
           <button
             tuiIconButton
             size="s"
@@ -29,7 +48,7 @@
             appearance="icon"
             icon="tuiIconFilter"
           ></button>
-        </div>
+        </div> -->
       </div>
     </div>
   </tui-island>

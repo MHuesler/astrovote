@@ -23,6 +23,10 @@ export class BackendService {
     this.http.get(`${this.baseUrl}/posts`).subscribe(res => this.posts.next(res))
   }
 
+  getPostsByNew(): void {
+    this.http.get(`${this.baseUrl}/posts/new`).subscribe(res => this.posts.next(res))
+  }
+
   createVote(postFK: string, rating: number): Observable<null> {
     return this.http.post<null>(`${this.baseUrl}/votes`, { postFK, rating })
   }

@@ -1,3 +1,4 @@
+import { FormControl } from '@angular/forms';
 import { AuthenticationService } from './../authentication/authentication.service';
 import { BackendService } from './../../services/backend.service';
 import { EditPostComponent } from './edit-post/edit-post.component';
@@ -14,6 +15,7 @@ import { SignInComponent } from '../authentication/sign-in/sign-in.component';
 export class HomeComponent implements OnInit {
 
   @ViewChild('createPostInput') createPostInput: ElementRef | undefined;
+  filter = new FormControl('top')
 
   private readonly postDialog = this.dialogService.open<number>(
     new PolymorpheusComponent(EditPostComponent, this.injector),
@@ -39,7 +41,14 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.backend.getPosts()
+    this.backend.getPosts();
+    this.filter.valueChanges
+      .subscribe((val) => {
+        switch(val) {
+          case 'top': this.backend.getPosts(); break;
+          case 'new': this.backend.getPostsByNew(); break;
+        }
+      })
   }
 
   openPostCreationDialog(): void {
