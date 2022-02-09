@@ -1,13 +1,23 @@
 nav {
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   height: 64px;
   align-items: center;
+  .logo, .user-actions {
+    flex-grow: 1;
+    flex-basis: 0;
+  }
+  .user-actions {
+    text-align: right;
+  }
 }
 
 main {
   display: flex;
   justify-content: center;
   background-color: #f0f1f5;
+}
+
+.search {
+  width: 640px;
 }

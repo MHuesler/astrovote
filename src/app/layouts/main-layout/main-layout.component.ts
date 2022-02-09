@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { FormControl, FormBuilder } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/modules/authentication/authentication.service';
 
@@ -8,11 +10,24 @@ import { AuthenticationService } from 'src/app/modules/authentication/authentica
 })
 export class MainLayoutComponent implements OnInit {
 
-  constructor(public authService: AuthenticationService) {
+  searchForm = this.fb.group({
+    searchQuery: ['']
+  })
+
+  constructor(
+    public authService: AuthenticationService,
+    private router: Router,
+    private fb: FormBuilder
+    ) {
     this.authService.refreshUser()
   }
 
   ngOnInit(): void {
+
+  }
+
+  onSearchSubmit(): void {
+    this.router.navigate([`/search`], { queryParams: { q: this.searchForm.controls.searchQuery.value } })
   }
 
 }

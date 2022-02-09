@@ -1,0 +1,48 @@
+<div class="feed-width pt-2">
+  <tui-island class="mb-3">
+    <div class="container-fluid">
+      <div class="row justify-content-between">
+        <div class="col-auto d-flex align-items-center">
+          <div class="row">
+            <div class="col-auto">
+              <button
+                  tuiButton
+                  type="button"
+                  size="s"
+                  iconRight="tuiIconStarFilled"
+                  appearance="secondary"
+              >
+                Top
+              </button>
+            </div>
+            <div class="col-auto">
+              <button
+              tuiButton
+              type="button"
+              size="s"
+              iconRight="tuiIconTime"
+              appearance="secondary"
+              >
+                New
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="col-auto">
+          <button
+            tuiIconButton
+            size="s"
+            type="button"
+            appearance="icon"
+            icon="tuiIconFilter"
+          ></button>
+        </div> -->
+      </div>
+    </div>
+  </tui-island>
+  <section>
+    <div class="mb-2" *ngFor="let post of backend.posts | async">
+      <app-post [post]="post"></app-post>
+    </div>
+  </section>
+</div>

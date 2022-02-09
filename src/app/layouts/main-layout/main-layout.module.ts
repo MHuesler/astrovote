@@ -1,10 +1,11 @@
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MainLayoutComponent } from './main-layout.component';
 import { MainLayoutRoutingModule } from './mail-layout.routing.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TuiButtonModule, TuiDataListModule, TuiHostedDropdownModule, TuiPrimitiveTextfieldModule, TuiSvgModule, TuiTextfieldControllerModule } from '@taiga-ui/core';
 import { TuiActiveZoneModule } from '@taiga-ui/cdk';
-import { TuiAvatarModule } from '@taiga-ui/kit';
+import { TuiAvatarModule, TuiInputModule } from '@taiga-ui/kit';
 
 @NgModule({
   declarations: [ MainLayoutComponent ],
@@ -18,7 +19,10 @@ import { TuiAvatarModule } from '@taiga-ui/kit';
     TuiAvatarModule,
     TuiPrimitiveTextfieldModule,
     TuiTextfieldControllerModule,
-    TuiButtonModule
+    TuiButtonModule,
+    ReactiveFormsModule,
+    FormsModule,
+    TuiInputModule
   ]
 })
 export class MainLayoutModule { }

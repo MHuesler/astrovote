@@ -1,16 +1,23 @@
 <nav class="container">
-  <div>
-    <a class="logo">astrovote</a>
+  <div class="logo">
+    <a>astrovote</a>
     <p>rate trading astrology</p>
   </div>
-  <!-- <tui-primitive-textfield
-    class="mb-3"
-    iconContent="tuiIconSearch"
-    iconAlign="left"
-    tuiTextfieldSize="m"
-    [tuiTextfieldLabelOutside]="true"
-  >Search Astrovote</tui-primitive-textfield> -->
-  <div *ngIf="this.authService.currentUser.value != null">
+
+  <form class="b-form" [formGroup]="searchForm" (ngSubmit)="onSearchSubmit()">
+    <tui-input
+      class="search"
+      iconContent="tuiIconSearch"
+      iconAlign="left"
+      tuiTextfieldSize="m"
+      formControlName="searchQuery"
+      [tuiTextfieldLabelOutside]="true"
+    >
+      Search
+    </tui-input>
+  </form>
+
+  <div *ngIf="this.authService.currentUser.value != null" class="user-actions">
     <tui-hosted-dropdown [content]="content">
       <tui-avatar text="Test" size="m"></tui-avatar>
     </tui-hosted-dropdown>
@@ -23,11 +30,13 @@
         <!-- </a> -->
     </ng-template>
   </div>
+
   <button
     *ngIf="this.authService.currentUser.value == null"
+    class="user-actions"
     tuiButton
     type="submit"
-    appearance="primary"
+    appearance="secondary"
     routerLink="/auth/signin"
   > Sign In</button>
 
