@@ -2,7 +2,7 @@ import { NgDompurifySanitizer } from "@tinkoff/ng-dompurify";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { TuiRootModule, TuiDialogModule, TuiNotificationsModule, TUI_SANITIZER } from "@taiga-ui/core";
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 
@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 import { TranslateLoader, TranslateModule } from "@ngx-translate/core";
 import { AddCsrfHeaderInterceptorService } from "./core/interceptor/add-csrf-header-interceptor.service";
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
+import { NgxSpinnerModule } from "ngx-spinner";
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,6 +23,7 @@ import { TranslateHttpLoader } from "@ngx-translate/http-loader";
     TuiDialogModule,
     TuiNotificationsModule,
     HttpClientModule,
+    NgxSpinnerModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -38,6 +40,7 @@ import { TranslateHttpLoader } from "@ngx-translate/http-loader";
       multi: true,
     },
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

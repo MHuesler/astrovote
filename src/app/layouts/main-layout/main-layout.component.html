@@ -1,46 +1,47 @@
-<nav class="container">
-  <div class="logo">
-    <a>astrovote</a>
-    <p>rate trading astrology</p>
-  </div>
+<div class="nav-wrapper">
+  <nav class="container">
+    <div class="logo">
+      <a>astrovote</a>
+      <p>rate trading astrology</p>
+    </div>
 
-  <form class="b-form" [formGroup]="searchForm" (ngSubmit)="onSearchSubmit()">
-    <tui-input
-      class="search"
-      iconContent="tuiIconSearch"
-      iconAlign="left"
-      tuiTextfieldSize="m"
-      formControlName="searchQuery"
-      [tuiTextfieldLabelOutside]="true"
-    >
-      Search
-    </tui-input>
-  </form>
+    <form class="b-form" [formGroup]="searchForm" (ngSubmit)="onSearchSubmit()">
+      <tui-input
+        class="search"
+        iconContent="tuiIconSearch"
+        iconAlign="left"
+        tuiTextfieldSize="m"
+        formControlName="searchQuery"
+        [tuiTextfieldLabelOutside]="true"
+      >
+        Search
+      </tui-input>
+    </form>
 
-  <div *ngIf="this.authService.currentUser.value != null" class="user-actions">
-    <tui-hosted-dropdown [content]="content">
-      <tui-avatar text="Test" size="m"></tui-avatar>
-    </tui-hosted-dropdown>
-    <ng-template #content>
-        <!-- <a class="menu-item" (click)="onSignOut()"> -->
-          <div class="icon">
-            <!-- <tui-svg src="tuiIconLogoutLarge"></tui-svg> -->
-          </div>
-          <div>{{ 'SIGN_OUT' }}</div>
-        <!-- </a> -->
-    </ng-template>
-  </div>
+    <div *ngIf="this.authService.currentUser.value != null" class="user-actions">
+      <tui-hosted-dropdown [content]="content">
+        <tui-avatar text="Test" size="m"></tui-avatar>
+      </tui-hosted-dropdown>
+      <ng-template #content>
+          <!-- <a class="menu-item" (click)="onSignOut()"> -->
+            <div class="icon">
+              <!-- <tui-svg src="tuiIconLogoutLarge"></tui-svg> -->
+            </div>
+            <div>{{ 'SIGN_OUT' }}</div>
+          <!-- </a> -->
+      </ng-template>
+    </div>
 
-  <button
-    *ngIf="this.authService.currentUser.value == null"
-    class="user-actions"
-    tuiButton
-    type="submit"
-    appearance="secondary"
-    routerLink="/auth/signin"
-  > Sign In</button>
-
-</nav>
-<main class="container-fluid d-flex justify-content-center">
+    <div *ngIf="this.authService.currentUser.value == null" class="user-actions">
+      <button
+        tuiButton
+        type="submit"
+        appearance="secondary"
+        routerLink="/auth/signin"
+      > Sign In</button>
+    </div>
+  </nav>
+</div>
+<main class="container-fluid d-flex justify-content-center pt-2">
   <router-outlet></router-outlet>
 </main>

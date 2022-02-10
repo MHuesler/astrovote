@@ -1,20 +1,29 @@
-nav {
-  display: flex;
-  justify-content: space-between;
-  height: 64px;
-  align-items: center;
-  .logo, .user-actions {
-    flex-grow: 1;
-    flex-basis: 0;
-  }
-  .user-actions {
-    text-align: right;
+.nav-wrapper {
+  top: 0px;
+  background-color: white;
+  position: sticky;
+  z-index: 1;
+
+  nav {
+    display: flex;
+    justify-content: space-between;
+    height: 64px;
+    align-items: center;
+    .logo, .user-actions {
+      flex-grow: 1;
+      flex-basis: 0;
+    }
+    .user-actions {
+      text-align: right;
+    }
   }
 }
 
 main {
   display: flex;
   justify-content: center;
+  min-height: calc(100vh - 64px);
+  flex: 1;
   background-color: #f0f1f5;
 }
 

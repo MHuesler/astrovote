@@ -1,3 +1,4 @@
+import { NgxSpinnerService } from 'ngx-spinner';
 import { FormControl } from '@angular/forms';
 import { AuthenticationService } from './../authentication/authentication.service';
 import { BackendService } from './../../services/backend.service';
@@ -6,6 +7,7 @@ import { Component, ElementRef, Inject, Injector, OnInit, ViewChild } from '@ang
 import { TuiDialogService } from '@taiga-ui/core';
 import { PolymorpheusComponent } from '@tinkoff/ng-polymorpheus';
 import { SignInComponent } from '../authentication/sign-in/sign-in.component';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
@@ -37,10 +39,12 @@ export class HomeComponent implements OnInit {
     @Inject(TuiDialogService) private readonly dialogService: TuiDialogService,
     @Inject(Injector) private readonly injector: Injector,
     public backend: BackendService,
-    private authService: AuthenticationService
+    private authService: AuthenticationService,
+    private spinner: NgxSpinnerService
   ) { }
 
   ngOnInit(): void {
+    this.backend.posts.pipe(take(1)).subscribe(() => setTimeout(() => this.spinner.hide(), 1000) )
     this.backend.getPosts();
     this.filter.valueChanges
       .subscribe((val) => {

@@ -1,4 +1,4 @@
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FormControl, FormBuilder } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/modules/authentication/authentication.service';
@@ -17,13 +17,15 @@ export class MainLayoutComponent implements OnInit {
   constructor(
     public authService: AuthenticationService,
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private route: ActivatedRoute
     ) {
     this.authService.refreshUser()
   }
 
   ngOnInit(): void {
-
+    this.route.queryParams
+      .subscribe(params => { this.searchForm.controls.searchQuery.setValue(params.q) })
   }
 
   onSearchSubmit(): void {

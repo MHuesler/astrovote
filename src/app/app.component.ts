@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,11 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class AppComponent {
   title = 'astrovote'
-  constructor(private translate: TranslateService) {
+  constructor(
+    private translate: TranslateService,
+    private spinner: NgxSpinnerService
+  ) {
     translate.setDefaultLang('en')
+    this.spinner.show()
   }
 }

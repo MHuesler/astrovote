@@ -1,4 +1,15 @@
 :host {
   max-width: 640px;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.feed {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  .feed-inner {
+    max-height: 100%;
+  }
 }
