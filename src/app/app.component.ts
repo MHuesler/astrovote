@@ -11,9 +11,7 @@ export class AppComponent {
   title = 'astrovote'
   constructor(
     private translate: TranslateService,
-    private spinner: NgxSpinnerService
   ) {
     translate.setDefaultLang('en')
-    this.spinner.show()
   }
 }

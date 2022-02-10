@@ -41,16 +41,16 @@ export class HomeComponent implements OnInit {
     public backend: BackendService,
     private authService: AuthenticationService,
     private spinner: NgxSpinnerService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
-    this.backend.posts.pipe(take(1)).subscribe(() => setTimeout(() => this.spinner.hide(), 1000) )
+    this.backend.posts.pipe(take(1)).subscribe(() => setTimeout(() => this.spinner.hide(), 1000))
     this.backend.getPosts();
     this.filter.valueChanges
       .subscribe((val) => {
         switch(val) {
           case 'top': this.backend.getPosts(); break;
-          case 'new': this.backend.getPostsByNew(); break;
+          case 'new': this.backend.getPosts("new"); break;
         }
       })
   }

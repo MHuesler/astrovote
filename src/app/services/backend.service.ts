@@ -19,16 +19,12 @@ export class BackendService {
     return this.http.post<null>(`${this.baseUrl}/posts`, post)
   }
 
-  getPosts(): void {
-    this.http.get(`${this.baseUrl}/posts`).subscribe(res => this.posts.next(res))
+  getPosts(sort: string = ""): void {
+    this.http.get(`${this.baseUrl}/posts`, { params: sort != "" ? { sort } : {} }).subscribe(res => this.posts.next(res))
   }
 
-  getPostsByNew(): void {
-    this.http.get(`${this.baseUrl}/posts/new`).subscribe(res => this.posts.next(res))
-  }
-
-  searchPosts(query: string): void {
-    this.http.get(`${this.baseUrl}/posts/search?q=${query}`).subscribe(res => this.posts.next(res))
+  searchPosts(query: string, sort: string = ""): void {
+    this.http.get(`${this.baseUrl}/posts/search?q=${query}`, { params: sort != "" ? { sort } : {} }).subscribe(res => this.posts.next(res))
   }
 
   createVote(postFK: string, rating: number): Observable<null> {

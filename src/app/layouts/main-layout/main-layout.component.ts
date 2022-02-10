@@ -2,6 +2,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormControl, FormBuilder } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/modules/authentication/authentication.service';
+import { NgxSpinner, NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-main-layout',
@@ -18,9 +19,11 @@ export class MainLayoutComponent implements OnInit {
     public authService: AuthenticationService,
     private router: Router,
     private fb: FormBuilder,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private spinner: NgxSpinnerService
     ) {
     this.authService.refreshUser()
+    this.spinner.show();
   }
 
   ngOnInit(): void {
@@ -30,6 +33,12 @@ export class MainLayoutComponent implements OnInit {
 
   onSearchSubmit(): void {
     this.router.navigate([`/search`], { queryParams: { q: this.searchForm.controls.searchQuery.value } })
+  }
+
+  onSignOut(): void {
+    this.authService
+      .signOut()
+      .subscribe(() => this.router.navigate(['/auth/signin']))
   }
 
 }

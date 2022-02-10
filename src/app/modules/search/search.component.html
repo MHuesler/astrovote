@@ -6,37 +6,30 @@
           <div class="row">
             <div class="col-auto">
               <button
-                  tuiButton
-                  type="button"
-                  size="s"
-                  iconRight="tuiIconStarFilled"
-                  appearance="secondary"
+                tuiButton
+                type="button"
+                size="s"
+                iconRight="tuiIconStarFilled"
+                appearance="secondary"
+                (click)="filter.setValue('top')"
               >
                 Top
               </button>
             </div>
             <div class="col-auto">
               <button
-              tuiButton
-              type="button"
-              size="s"
-              iconRight="tuiIconTime"
-              appearance="secondary"
+                tuiButton
+                type="button"
+                size="s"
+                iconRight="tuiIconTime"
+                appearance="secondary"
+                (click)="filter.setValue('new')"
               >
                 New
               </button>
             </div>
           </div>
         </div>
-        <!-- <div class="col-auto">
-          <button
-            tuiIconButton
-            size="s"
-            type="button"
-            appearance="icon"
-            icon="tuiIconFilter"
-          ></button>
-        </div> -->
       </div>
     </div>
   </tui-island>

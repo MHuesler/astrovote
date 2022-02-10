@@ -33,6 +33,7 @@ export class SignUpComponent implements OnInit {
         .subscribe((userInfo: { userId: string }) => {
           localStorage.setItem('userId', userInfo.userId)
           this.authService.currentUser.next(userInfo)
+          this.router.navigate([''])
         }))
   }
 }

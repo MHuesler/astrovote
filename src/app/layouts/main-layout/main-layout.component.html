@@ -1,9 +1,9 @@
 <div class="nav-wrapper">
   <nav class="container">
-    <div class="logo">
+    <a class="logo" routerLink="">
       <a>astrovote</a>
       <p>rate trading astrology</p>
-    </div>
+    </a>
 
     <form class="b-form" [formGroup]="searchForm" (ngSubmit)="onSearchSubmit()">
       <tui-input
@@ -23,12 +23,12 @@
         <tui-avatar text="Test" size="m"></tui-avatar>
       </tui-hosted-dropdown>
       <ng-template #content>
-          <!-- <a class="menu-item" (click)="onSignOut()"> -->
+          <a class="menu-item" (click)="onSignOut()">
             <div class="icon">
-              <!-- <tui-svg src="tuiIconLogoutLarge"></tui-svg> -->
+              <tui-svg src="tuiIconLogoutLarge"></tui-svg>
             </div>
             <div>{{ 'SIGN_OUT' }}</div>
-          <!-- </a> -->
+          </a>
       </ng-template>
     </div>
 
@@ -42,6 +42,6 @@
     </div>
   </nav>
 </div>
-<main class="container-fluid d-flex justify-content-center pt-2">
+<main class="container-fluid pt-2">
   <router-outlet></router-outlet>
 </main>

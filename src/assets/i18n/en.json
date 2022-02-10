@@ -11,6 +11,8 @@
   },
   "ACCOUNT": {
     "USERNAME": "Username",
-    "PASSWORD": "Password"
+    "PASSWORD": "Password",
+    "DISPLAY_NAME" : "Display name",
+    "EMAIL": "Email"
   }
 }
