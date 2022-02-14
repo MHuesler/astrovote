@@ -14,7 +14,7 @@ export class SearchComponent implements OnInit {
 
   filter = new FormControl('top')
 
-  searchQuery = "";
+  searchQuery = '';
 
   constructor(
     public backend: BackendService,
@@ -26,15 +26,16 @@ export class SearchComponent implements OnInit {
     this.backend.posts.pipe(take(1)).subscribe(() => setTimeout(() => this.spinner.hide(), 1000))
 
     this.route.queryParams.subscribe(params => {
-      this.searchQuery = params.q;
+      this.searchQuery = params.q
+      if (this.searchQuery === '') this.spinner.hide()
       this.backend.searchPosts(this.searchQuery)
     })
 
     this.filter.valueChanges
     .subscribe((val) => {
-      switch(val) {
-        case 'top': this.backend.searchPosts(this.searchQuery); break;
-        case 'new': this.backend.searchPosts(this.searchQuery, "new"); break;
+      switch (val) {
+        case 'top': this.backend.searchPosts(this.searchQuery); break
+        case 'new': this.backend.searchPosts(this.searchQuery, 'new'); break
       }
     })
   }
