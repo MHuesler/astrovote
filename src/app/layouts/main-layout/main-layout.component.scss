@@ -19,6 +19,15 @@
   }
 }
 
+.logo {
+  text-decoration: none;
+  color: black;
+  .title {
+    font-size: 16px;
+    font-weight: 600;
+  }
+}
+
 tui-avatar {
   cursor: pointer;
 }
