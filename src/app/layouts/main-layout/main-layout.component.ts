@@ -23,7 +23,7 @@ export class MainLayoutComponent implements OnInit {
     private spinner: NgxSpinnerService
     ) {
     this.authService.refreshUser()
-    this.spinner.show();
+    this.spinner.show()
   }
 
   ngOnInit(): void {
